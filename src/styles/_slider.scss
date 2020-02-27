@@ -1,0 +1,252 @@
+// SLIDER
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+
+  // INNER
+  &__inner {
+    width: 100vw;
+    height: 100vh;
+    font-size: 3rem;
+
+    // RESPONSIVE
+    @include respond(tablet-l) {
+      font-size: 2.5rem;
+    }
+
+    @include respond(phone) {
+      font-size: 5rem;
+    }
+  }
+
+  // SLIDE
+  &__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+    will-change: auto;
+
+    //
+    &:nth-of-type(1) {
+      z-index: 6;
+    }
+
+    //
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      @include translate("top", "left", 0, 0);
+      background-color: rgba(black, 0.7);
+    }
+
+    // IMAGE
+    > img {
+      max-width: 100%;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      user-select: none;
+    }
+  }
+
+  // OVERLAY
+  &__overlay {
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 58%;
+    height: 100%;
+    clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+    background-color: rgba(red, 0.4);
+    z-index: 9999;
+    will-change: auto;
+
+    // RESPONSIVE
+    @include respond(tablet-p) {
+      width: 100%;
+      clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
+    }
+  }
+
+  // CONTENT
+  &__content {
+    position: relative;
+    left: 7rem;
+    will-change: auto;
+
+    //
+    > * {
+      user-select: none;
+    }
+
+    // RESPONSIVE
+    @include respond(phone) {
+      left: 5%;
+    }
+  }
+
+  // NAME
+  &__name {
+    font-size: 1.5em;
+    font-weight: 300;
+    margin: 0.2em 0;
+
+    // RESPONSIVE
+    @include respond(phone) {
+      font-size: 1.1em;
+    }
+  }
+
+  &__name,
+  &__title {
+    text-transform: uppercase;
+  }
+
+  // TITLE
+  &__title {
+    font-size: 0.8em;
+    font-weight: 100;
+  }
+
+  // BADGE TOP
+  &__badgeTop,
+  &__badgeBottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: red;
+    font-size: 0.5em;
+    text-transform: capitalize;
+  }
+
+  // BADGE TOP
+  &__badgeTop {
+  }
+
+  // BADGE BOTTOM
+  &__badgeBottom {
+    position: absolute;
+    bottom: -5px;
+    right: -65px;
+    margin: 0.4em 0;
+
+    // RESPONSIVE
+    @include respond(phone) {
+      left: 0;
+      bottom: -50%;
+    }
+  }
+
+  // CONTROLLER
+  &__controller {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0%;
+    right: 17rem;
+    width: 38%;
+    bottom: 6rem;
+    z-index: 9999;
+
+    // RESPONSIVE
+    @include respond(tablet-l) {
+      width: 50%;
+      right: 10%;
+      justify-content: flex-end;
+    }
+
+    @include respond(tablet-p) {
+      width: 90%;
+      right: 15%;
+    }
+  }
+
+  // ARROW
+  &__arrow {
+    display: flex;
+    align-items: center;
+    order: 1;
+    margin-left: 3em;
+
+    // RIGHGT
+    &__right,
+    &__left {
+      cursor: pointer;
+
+      // RESPONSIVE
+      @include respond(tablet-p) {
+        transform: scale(1.5);
+      }
+    }
+
+    // RIGHT
+    &__right {
+    }
+
+    // LEFT
+    &__left {
+      margin-right: 30px;
+
+      // RESPONSIVE
+      @include respond(tablet-p) {
+        margin-right: 71px;
+      }
+    }
+  }
+
+  // INDECATORS
+  &__indecators {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    order: -1;
+
+    // RESPONSIVE
+    @include respond(tablet-p) {
+      display: none;
+    }
+
+    // ITEM
+    &__item {
+      width: 33px;
+      height: 14px;
+      border-radius: 7px;
+      border: 0.6px solid rgba(white, 0.3);
+      cursor: pointer;
+
+      // NOT LAST CHILD
+      &:not(:last-child) {
+        margin-right: 9px;
+      }
+
+      // MOVE
+      &--move {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        background-color: white;
+        border: 0;
+        transition: left 0.5s ease;
+      }
+    }
+  }
+}
