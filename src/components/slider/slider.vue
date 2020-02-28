@@ -6,6 +6,9 @@
     @mousedown="mouseDown($event)"
     @mousemove="mouseMove($event)"
     @mouseup="mouseUp($event)"
+    v-touches:touchstart="touchStart"
+    v-touches:touchmove="touchMove"
+    v-touches:touchend="touchEnd"
   >
     <!-- SLIDER INNER -->
     <div class="slider__inner">
@@ -127,6 +130,47 @@ export default {
 
       // CHANGE STATUS EVENT UP EQUAL TRUE
       this.statusEventUp = true;
+    },
+
+    //// TOUCHES DEVICE
+    // TOUCH START
+    touchStart(el) {
+      // CHANGE STATUS EVENT UP EQUAL FALSE
+      this.statusEventUp = false;
+
+      // START X
+      this.startX = el.touches[0].pageX;
+    },
+
+    // TOUCH MOVE
+    touchMove(el) {
+      //
+      this.endX = el.touches[0].pageX;
+
+      // CHANGE STATUS EVENT UP EQUAL TRUE
+      this.statusEventUp = true;
+    },
+
+    // TOUCH END
+    touchEnd(el) {
+      // CHANGE STATUS TO FALSE
+      this.statusEventDown = false;
+
+      // IF STATUS EVENT UP TRUE WILL BE RUNING VALIDATE SWIP
+      if (this.statusEventUp) this.validateSwip();
+    }
+  },
+  directives: {
+    // TOUCHES
+    touches: {
+      bind(el, binding, vnode) {
+        // ALL
+        const event = binding.arg;
+        const fn = binding.value;
+
+        // ADD EVENT LISTENER
+        el.addEventListener(event, fn);
+      }
     }
   },
   components: {

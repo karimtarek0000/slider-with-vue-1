@@ -14,7 +14,11 @@
 
     // RESPONSIVE
     @include respond(tablet-l) {
-      font-size: 2.5rem;
+      // font-size: 2.5rem;
+    }
+
+    @include respond(tablet-l) {
+      font-size: 3rem;
     }
 
     @include respond(phone) {

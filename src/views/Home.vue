@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- SLIDER -->
     <slider :listMovies="listMoviesSlider" />
   </div>
 </template>
